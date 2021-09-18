@@ -1,42 +1,43 @@
-import { useState } from "react";
+import {useState, useEffect} from 'react';
 
 const productsData = [
   {
     id: 1,
-    name: "Fruits",
+    name: 'Fruits',
     imageURL:
-      "https://www.kirbysproduce.com/wp-content/uploads/2020/04/produce-box.jpg",
-    description: "Wonderful fruits from all over the world",
-    price: "50",
-    currency: "DKK",
+      'https://www.kirbysproduce.com/wp-content/uploads/2020/04/produce-box.jpg',
+    description: 'Wonderful fruits from all over the world',
+    price: '50',
+    currency: 'DKK',
   },
   {
     id: 2,
-    name: "Vegetables",
+    name: 'Vegetables',
     imageURL:
-      "https://www.kirbysproduce.com/wp-content/uploads/2020/04/produce-box.jpg",
-    description: "Wonderful vegetables from all over the world",
-    price: "50",
-    currency: "DKK",
+      'https://www.kirbysproduce.com/wp-content/uploads/2020/04/produce-box.jpg',
+    description: 'Wonderful vegetables from all over the world',
+    price: '50',
+    currency: 'DKK',
   },
   {
     id: 3,
-    name: "Juice Box",
+    name: 'Juice Box',
     imageURL:
-      "https://www.kirbysproduce.com/wp-content/uploads/2020/04/produce-box.jpg",
-    description: "Great box for your juicer",
-    price: "50",
-    currency: "DKK",
+      'https://www.kirbysproduce.com/wp-content/uploads/2020/04/produce-box.jpg',
+    description: 'Great box for your juicer',
+    price: '50',
+    currency: 'DKK',
   },
 ];
 
 let initialProducts = productsData.map((item) => {
-  return { ...item, selected: false };
+  return {...item, selected: false};
 });
 
 function useProducts() {
   const [products] = useState(initialProducts);
   const [cart, setCart] = useState([]);
+  const [total, setTotal] = useState([]);
 
   const addProduct = (product) => {
     let newCart = cart.concat(product);
@@ -44,10 +45,24 @@ function useProducts() {
   };
 
   const removeProduct = (product) => {
-    setCart(cart.filter((item) => item.id != product.id));
+    setCart(cart.filter((item) => item.id !== product.id));
   };
 
-  return { products, cart, addProduct, removeProduct };
+  const calculateSum = (product) => {
+    const totalPrice = cart.reduce((a, b) => {
+      return a + parseInt(b.price);
+    }, 0);
+
+    console.log(totalPrice);
+    return totalPrice;
+  };
+
+  useEffect(() => {
+    // calculateSum()
+    setTotal(calculateSum());
+  }, [cart]);
+
+  return {products, cart, addProduct, removeProduct, total};
 }
 
 export default useProducts;
