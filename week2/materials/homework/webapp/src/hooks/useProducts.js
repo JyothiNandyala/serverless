@@ -54,7 +54,7 @@ function useProducts() {
     }, 0);
 
     console.log(totalPrice);
-    return totalPrice;
+    return totalPrice; 
   };
 
   useEffect(() => {

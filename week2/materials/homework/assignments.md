@@ -4,7 +4,9 @@
 
 Sync your changes to s3 and write down your s3 bucket url.
 
-bucket url: `?`
+website url: `https://jyothi-week2-homework.s3.amazonaws.com/index.html`
+
+bucket url:`https://s3.console.aws.amazon.com/s3/buckets/jyothi-week2-homework?region=us-east-1&tab=objects`
 
 **Assignment 5:**
 
@@ -30,7 +32,7 @@ brief description: `First 50 TB / Month $0.023 per GB Next 450 TB / Month $0.022
 
 The file `week2/assignments/products.json` needs to be uploaded Inside the bucket `hyf-serverless-course-week-2`. Upload the file through the CLI and write down the command needed.
 
-docs:
+docs: `aws s3 cp /Users/jyothinandyala/Desktop/Serverless/serverless/week2/materials/homework/products.json s3://jyothi-week2-homework`
 
 **Assignment 9:**
 Write down a brief use case on when S3 could be used for a data engineering assignment:
